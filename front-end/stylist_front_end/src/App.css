@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures the container spans the full height of the viewport */
+  position: relative;
+}
+
+.hero-banner {
+  flex-grow: 1; /* Pushes the footer to the bottom */
+}

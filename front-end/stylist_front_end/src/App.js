@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+import React, { useRef } from 'react';
+import Homepage from './pages/HomePage/HomePage';
+import Login from './pages/Login/Login';
+import Footer from './components/Footer';
 import './App.css';
 
-function App() {
+const App = () => {
+  const loginRef = useRef(null);
+
+  const scrollToLogin = () => {
+    loginRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <Homepage scrollToLogin={scrollToLogin} />
+      <div ref={loginRef}>
+        <Login />
+      </div>
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
