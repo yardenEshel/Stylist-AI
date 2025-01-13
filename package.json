@@ -1,0 +1,9 @@
+{
+  "name": "Stylist-AI",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {},
+  "dependencies": {
+    "web-vitals": "^4.2.4"
+  }
+}
