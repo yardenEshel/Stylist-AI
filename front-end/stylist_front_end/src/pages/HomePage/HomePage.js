@@ -7,8 +7,9 @@ const Homepage = ({ scrollToLogin }) => {
       <div className="hero-content">
         <h1 className="hero-title">STYLIST AI</h1>
         <p className="hero-description">
-          Your AI-powered stylist, redefining fashion by curating personalized looks that match your unique style and preferences.
-        </p>
+        Find the perfect look, effortlessly!        </p>
+        <br></br>
+
         <button onClick={scrollToLogin} className="hero-button">
           Get Started
         </button>
