@@ -22,25 +22,26 @@ const Footer = () => {
 
 const styles = {
   footer: {
-    background: 'linear-gradient(to right,rgb(57, 65, 118),rgb(33, 174, 139))', // Gradient background
-    color: '#ffffff',
-    textAlign: 'center',
-    padding: '20px 0', // Sticks to the bottom (see note below)
-    bottom: 0,
-    width: '100%',
-    boxShadow: '0 -2px 5px rgba(0, 0, 0, 0.3)', // Subtle shadow at top of footer
+    background: '#f5f5dc', // Beige background color to match the hero
+    color: '#2c2c2c', // Darker text color for contrast (same as hero text)
+    textAlign: 'center', // Centers the text
+    padding: '20px 0', // Adds vertical padding for spacing
+    bottom: 0, // Positions at the very bottom
+    width: '100%', // Ensures the footer spans the entire width
+    boxShadow: '0 -2px 5px rgba(0, 0, 0, 0.1)', // Subtle shadow for depth
+    zIndex: 1000, // Ensures it stays above other elements
   },
   text: {
-    margin: 0,
-    fontSize: '16px',
-    fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
-    
+    margin: 0, // Removes unnecessary margin
+    fontSize: '16px', // Keeps the font readable
+    fontFamily: '"Arial", sans-serif', // Matches the hero font
   },
-  
   link: {
-    color: '#ffffff',
-    textDecoration: 'underline',
+    color: '#2c2c2c', // Matches the darker text color
+    textDecoration: 'underline', // Underline for links
+    transition: 'color 0.3s ease', // Smooth transition for hover effects
   },
 };
+
 
 export default Footer;

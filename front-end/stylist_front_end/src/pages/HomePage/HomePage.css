@@ -1,62 +1,73 @@
-html, body {
+/* Base styles for html and body */
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
   background: linear-gradient(to right, #f5f5dc, #e0d9c6); /* Beige gradient */
+  font-family: 'Arial', sans-serif; /* Ensure consistent font across the app */
 }
 
+/* The main container for the HomePage component */
 .homepage-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh; /* Full viewport height */
-  width: 100%; /* Full viewport width */
-  background: linear-gradient(to right, #f5f5dc, #e0d9c6); /* Matches the beige gradient theme */
-  color: #2c2c2c; /* Darker text for better readability */
-  text-align: center;
+  width: 100%; /* Full width */
+  /* The background is already set on html/body, so you can omit it here or match it. */
+  color: #2c2c2c;
+  text-align: center; 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   animation: fadeIn 1s ease-in-out;
 }
 
+/* Fills one full screen height, pushing the next section below the fold */
+.hero-subcontainer {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contains the hero text and button */
 .hero-content {
   max-width: 80%;
   padding: 20px;
   animation: slideUp 1s ease-out;
+  /* You can choose text alignment here */
+  text-align: center;
 }
 
 .hero-title {
-  font-size: 8rem; /* Keeps a bold size for impact */
-  color: #2c2c2c; /* Darker text color for contrast */
-  font-family: 'Arial', sans-serif; /* More readable font */
-  margin-bottom: 20px; /* Keeps spacing consistent */
-  text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.8); /* Subtle glow effect */
-  letter-spacing: 1.5px; /* Slightly increases spacing for a modern look */
-  font-weight: 700; /* Makes the title bold and prominent */
-  text-transform: uppercase; /* Gives it a strong, commanding presence */
-  text-align: left; /* Aligns the text to the left for a modern feel */
+  font-size: 8rem;
+  color: #2c2c2c;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.8);
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  text-transform: uppercase;
+  /* text-align: left; (already set in .hero-content) */
 }
 
 .hero-description {
-  color: #3a3a3a; /* Darker shade for better readability */
-  font-size: 1.2rem; /* Increased font size for clarity */
-  line-height: 1.8; /* Improved line spacing for readability */
-  margin-bottom: 30px;
-  text-align: left;
-  max-width: 60%;
-  font-family: 'Arial', sans-serif; /* Clean, readable font */
+  color: #3a3a3a;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  margin-top: 40px;
+  text-align: center;
+  /* text-align: left; also inherits from .hero-content */
 }
 
+/* Hero button styling */
 .hero-button {
-  background: #b29572; /* Slightly darker beige for visibility */
-  color: #ffffff; /* White text for contrast */
+  background: #b29572;
+  color: #ffffff;
   padding: 12px 24px;
   text-decoration: none;
-  font-size: 1.2rem; /* Slightly larger font size for the button */
+  font-size: 1.2rem;
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  margin-top: 5%;
   animation: buttonPulse 2s infinite;
   transition: transform 0.3s ease;
+  cursor: pointer; /* Good practice for clickable items */
+  
 }
 
 .hero-button:hover {
@@ -64,6 +75,7 @@ html, body {
   background: #a47e5b; /* Slightly darker shade on hover */
 }
 
+/* Keyframe for the pulse animation */
 @keyframes buttonPulse {
   0% {
     transform: scale(1);
@@ -73,5 +85,26 @@ html, body {
   }
   100% {
     transform: scale(1);
+  }
+}
+
+/* Example fadeIn and slideUp animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

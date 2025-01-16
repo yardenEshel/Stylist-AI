@@ -1,21 +1,19 @@
-import React, { useRef } from 'react';
+
 import Homepage from './pages/HomePage/HomePage';
-import Login from './pages/Login/Login';
 import Footer from './components/Footer';
+import OnBoarding from './pages/OnBoarding/OnBoarding';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
 const App = () => {
-  const loginRef = useRef(null);
-
-  const scrollToLogin = () => {
-    loginRef.current.scrollIntoView({ behavior: 'smooth' });
-  };
   return (
     <div className="app-container">
-      <Homepage scrollToLogin={scrollToLogin} />
-      <div ref={loginRef}>
-        <Login />
-      </div>
+      <Routes>
+        {/* Path for the homepage */}
+        <Route path="/" element={<Homepage />} />
+        {/* Path for the onboarding page */}
+        <Route path="/onboarding" element={<OnBoarding />} />
+      </Routes>
       <Footer />
     </div>
   );

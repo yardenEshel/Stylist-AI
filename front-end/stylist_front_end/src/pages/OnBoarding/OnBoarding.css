@@ -1,0 +1,369 @@
+/* src/components/OnBoarding/OnBoarding.css */
+
+/* Basic Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Minimalist Light Beige Color Palette */
+:root {
+  --primary-color: #b29572;       /* Soft Brown Accent */
+  --primary-light: #f8f1e5;       /* Light Beige Background */
+  --secondary-color: #ffffff;     /* White for Clean Elements */
+  --text-color: #333333;          /* Dark Charcoal for Readability */
+  --border-color: #dddddd;        /* Light Gray for Borders */
+  --button-bg: #b29572;           /* Soft Brown for Buttons */
+  --button-hover-bg: #8c6e4c;     /* Darker Brown for Button Hover */
+  --button-disabled-bg: #f0e6dc;  /* Light Beige for Disabled Buttons */
+  --success-color: #28a745;       /* Green for Success States */
+  --error-color: #dc3545;         /* Red for Error Messages */
+  --shadow-color: rgba(0, 0, 0, 0.05); /* Subtle Shadow */
+}
+
+/* Onboarding Wrapper */
+.onboarding-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: var(--primary-light);
+  min-height: 100vh;
+}
+
+/* Flex Container for Steps and Form */
+.onboarding-content {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  gap: 2rem;
+}
+
+/* Grid of Step Boxes */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  flex: 1; /* Takes up remaining space */
+}
+
+.step-box {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.step-box:hover {
+  box-shadow: 0 2px 8px var(--shadow-color);
+  border-color: var(--primary-color);
+}
+
+.step-box.active {
+  border-color: var(--primary-color);
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.step-box.completed {
+  background-color: #e6ffe6; /* Light green background for completed steps */
+}
+
+.step-number {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.step-title {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.checkmark {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: var(--success-color);
+  font-size: 1.2rem;
+}
+
+/* Step Form */
+.step-form {
+  background-color: var(--secondary-color);
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  flex: 2; /* Takes up more space compared to steps-grid */
+  max-width: 600px;
+  height: 600px;
+}
+
+/* Form Heading */
+.step-form h2 {
+  margin-bottom: 1.5rem;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: var(--text-color);
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Input Group */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-weight: 500;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.instructions {
+  font-size: 0.85rem;
+  color: var(--text-color);
+  margin-top: 0.25rem;
+}
+
+/* Slider Styling */
+input[type='range'] {
+  width: 100%;
+}
+
+.price-values {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: var(--text-color);
+}
+
+/* Autocomplete Styling Overrides */
+.step-form .MuiAutocomplete-root {
+  width: 100%;
+}
+
+.step-form .MuiFormControl-root {
+  margin-bottom: 1.5rem;
+}
+
+/* Customize the appearance of the Autocomplete */
+.step-form .MuiOutlinedInput-root {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+}
+
+.step-form .MuiFormLabel-root {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.step-form .MuiFormHelperText-root {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.9rem;
+  color: var(--error-color);
+}
+
+/* Focus State for Autocomplete */
+.step-form .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(178, 149, 114, 0.2); /* Soft shadow for focus */
+}
+
+/* Slider Styling */
+.input-group .MuiSlider-root {
+  color: var(--primary-color);
+  margin-top: 1rem;
+}
+
+.input-group .MuiSlider-markLabel {
+  font-size: 0.8rem;
+  color: var(--text-color);
+}
+
+/* Error Styling */
+.error {
+  color: var(--error-color);
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Form Navigation Buttons */
+.form-navigation {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.form-navigation button {
+  padding: 0.6rem 1.2rem;
+  background-color: var(--button-bg);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+}
+
+.form-navigation button:hover:not(:disabled) {
+  background-color: var(--button-hover-bg);
+}
+
+.form-navigation button:disabled {
+  background-color: var(--button-disabled-bg);
+  cursor: not-allowed;
+}
+
+/* Confirmation Message */
+.confirmation {
+  background-color: var(--secondary-color);
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  text-align: center;
+  max-width: 600px;
+  margin-top: 2rem;
+}
+
+.confirmation h2 {
+  margin-bottom: 1rem;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: var(--text-color);
+}
+
+.confirmation p {
+  margin-bottom: 1.5rem;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: var(--text-color);
+}
+
+.confirmation button {
+  padding: 0.6rem 1.2rem;
+  background-color: var(--button-bg);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+}
+
+.confirmation button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+/* Image Preview */
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.preview-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+/* Image Container for Remove Button */
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.remove-image-button {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+  padding: 0;
+}
+
+.remove-image-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive Design */
+@media (min-width: 769px) {
+  .onboarding-content {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 768px) {
+  .onboarding-content {
+    flex-direction: column;
+  }
+
+  .steps-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .step-form {
+    max-width: 100%;
+  }
+
+  .form-navigation {
+    justify-content: center;
+  }
+
+  .image-preview {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .preview-image {
+    width: 60px;
+    height: 60px;
+  }
+
+  .onboarding-wrapper {
+    padding: 1rem;
+  }
+
+  .step-form,
+  .confirmation {
+    padding: 1rem;
+  }
+
+  .form-navigation {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-navigation button {
+    width: 100%;
+  }
+}
