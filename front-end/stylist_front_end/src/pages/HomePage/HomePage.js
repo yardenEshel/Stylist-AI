@@ -15,7 +15,7 @@ const Homepage = () => {
       {/* Hero Section */}
       <div className="hero-subcontainer">
         <section className="hero-content">
-          <h1 className="hero-title">STYLIST AI</h1>
+          <h1 className="hero-title">ViStyle</h1>
           <p className="hero-description">
             Find the perfect look, effortlessly!
           </p>

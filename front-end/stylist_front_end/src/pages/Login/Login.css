@@ -6,7 +6,6 @@ html, body {
     padding: 0;
     height: 100%;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #f5f5dc, #e0d9c6); /* Soft beige gradient */
     color: #333; /* Neutral text color for readability */
   }
   
