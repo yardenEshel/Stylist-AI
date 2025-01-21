@@ -73,8 +73,8 @@ const OnBoarding = () => {
     { id: 1, title: 'Event Type' },
     { id: 2, title: 'Price Range' },
     { id: 3, title: 'Sizes' },
-    { id: 4, title: 'Additional Points' },
-    { id: 5, title: 'Upload Images' },
+    { id: 4, title: 'Upload Images' },
+    { id: 5, title: 'Additional Points' },
   ];
 
   // State to track the current step
@@ -178,7 +178,7 @@ const OnBoarding = () => {
           stepErrors.attendees = 'Please enter positive numbers.';
         }
         break;
-      case 4:
+      case 5:
         if (formData.values.length === 0) {
           stepErrors.values = 'Please select at least one value.';
         }
@@ -186,7 +186,7 @@ const OnBoarding = () => {
           stepErrors.brandType = 'Please select at least one brand type.';
         }
         break;
-      case 5:
+      case 4:
         if (formData.images.length === 0) {
           stepErrors.images = 'Please upload at least one image.';
         }
@@ -685,14 +685,24 @@ const OnBoarding = () => {
             />
           ))}
         </div>
-
-        {/* Current Step Form */}
+        
+      </div>
+{/* Current Step Form */}
         {currentStep && (
           <div className="step-form">
             <h2>
               Step {currentStep}: {steps.find((step) => step.id === currentStep).title}
             </h2>
             <form>
+              {currentStep === 0 && (
+                <EventTypeForm
+                  formData={formData}
+                  handleChange={handleChange}
+                  handleRadioChange={handleRadioChange}
+                  isOther={isOther}
+                  errors={errors}
+                />
+              )}
               {currentStep === 1 && (
                 <EventTypeForm
                   formData={formData}
@@ -719,7 +729,7 @@ const OnBoarding = () => {
                 />
               )}
 
-              {currentStep === 4 && (
+              {currentStep === 5 && (
                 <PreferencesForm
                   formData={formData}
                   setFormData={setFormData}
@@ -727,7 +737,7 @@ const OnBoarding = () => {
                 />
               )}
 
-              {currentStep === 5 && (
+              {currentStep === 4 && (
                 <UploadImagesForm
                   formData={formData}
                   handleChange={handleChange}
@@ -743,10 +753,8 @@ const OnBoarding = () => {
                 isLastStep={currentStep === steps.length}
               />
             </form>
-          </div>
+        </div>
         )}
-      </div>
-
       {/* Confirmation Message */}
       {!currentStep && completedSteps.length === steps.length && (
         <Confirmation resetOnboarding={resetOnboarding} />

@@ -2,7 +2,6 @@
 
 /* Basic Reset */
 * {
-  
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -25,35 +24,39 @@
 
 /* Onboarding Wrapper */
 .onboarding-wrapper {
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 2rem;
+  align-items: center; 
   background-color: var(--primary-light);
-  min-height: 100vh;
+  height: 100vh;
+
+  width: 1200px;     /* Fixed width */
+  margin: 0 auto;    /* Center horizontally */
 }
 
 /* Flex Container for Steps and Form */
 .onboarding-content {
-  display: flex;
-  width: 100%;
-  max-width: 1200px;
-  gap: 2rem;
+
+  gap: 32px;           /* Fixed gap (2rem = 32px) */
+  display: flex;       /* Ensure flex layout */
 }
 
 /* Grid of Step Boxes */
 .steps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  flex: 1; /* Takes up remaining space */
+  grid-auto-flow: column;
+  gap: 16px; /* Fixed gap (1rem = 16px) */
 }
 
+/* Step Box */
 .step-box {
+  width: 150px; /* Fixed width */
+  height: 100px; /* Fixed height */
   background-color: var(--secondary-color);
   border: 1px solid var(--border-color);
   border-radius: 6px;
-  padding: 1rem 1.5rem;
+  padding: 16px 24px; /* Fixed padding (1rem = 16px, 1.5rem = 24px) */
   text-align: center;
   cursor: pointer;
   position: relative;
@@ -75,15 +78,15 @@
 }
 
 .step-number {
-  font-size: 1.2rem;
+  font-size: 20px; /* 1.2rem = 20px */
   font-weight: bold;
   color: var(--primary-color);
 }
 
 .step-title {
   display: block;
-  margin-top: 0.5rem;
-  font-size: 1rem;
+  margin-top: 8px; /* 0.5rem = 8px */
+  font-size: 16px;  /* 1rem = 16px */
   color: var(--text-color);
 }
 
@@ -92,90 +95,93 @@
   top: 8px;
   right: 8px;
   color: var(--success-color);
-  font-size: 1.2rem;
+  font-size: 20px; /* 1.2rem = 20px */
 }
 
 /* Step Form */
 .step-form {
   background-color: var(--secondary-color);
-  padding: 2rem;
+  padding: 32px; /* 2rem = 32px */
   border: 1px solid var(--border-color);
   border-radius: 6px;
   box-shadow: 0 2px 4px var(--shadow-color);
-  flex: 2; /* Takes up more space compared to steps-grid */
-  max-width: 600px;
-  height: 600px;
+  width: 60%; /* Fixed width */
+  height: 80%; /* Fixed height */
+  overflow-y: auto; /* Enable scrolling if content overflows */
 }
 
 /* Form Heading */
 .step-form h2 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 24px; /* 1.5rem = 24px */
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: var(--text-color);
+  font-size: 24px; /* Example fixed font size */
 }
 
 /* Form Group */
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 24px; /* 1.5rem = 24px */
 }
 
 /* Input Group */
 .input-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: 16px; /* 1rem = 16px */
 }
 
 .input-group label {
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px; /* 0.5rem = 8px */
   color: var(--text-color);
   font-weight: 500;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px; /* Fixed font size */
 }
 
 .instructions {
-  font-size: 0.85rem;
+  font-size: 14px; /* 0.85rem ≈ 14px */
   color: var(--text-color);
-  margin-top: 0.25rem;
+  margin-top: 4px; /* 0.25rem = 4px */
 }
 
 /* Slider Styling */
 input[type='range'] {
-  width: 100%;
+  width: 500px; /* Fixed width */
 }
 
 .price-values {
   display: flex;
   justify-content: space-between;
-  margin-top: 0.5rem;
+  margin-top: 8px; /* 0.5rem = 8px */
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: var(--text-color);
+  font-size: 16px; /* Fixed font size */
 }
 
 /* Autocomplete Styling Overrides */
 .step-form .MuiAutocomplete-root {
-  width: 100%;
+  width: 500px; /* Fixed width */
 }
 
 .step-form .MuiFormControl-root {
-  margin-bottom: 1.5rem;
+  margin-bottom: 24px; /* 1.5rem = 24px */
 }
 
 /* Customize the appearance of the Autocomplete */
 .step-form .MuiOutlinedInput-root {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 1rem;
+  font-size: 16px; /* Fixed font size */
 }
 
 .step-form .MuiFormLabel-root {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 1rem;
+  font-size: 16px; /* Fixed font size */
   color: var(--text-color);
 }
 
 .step-form .MuiFormHelperText-root {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 0.9rem;
+  font-size: 14px; /* 0.9rem ≈ 14px */
   color: var(--error-color);
 }
 
@@ -188,19 +194,19 @@ input[type='range'] {
 /* Slider Styling */
 .input-group .MuiSlider-root {
   color: var(--primary-color);
-  margin-top: 1rem;
+  margin-top: 16px; /* 1rem = 16px */
 }
 
 .input-group .MuiSlider-markLabel {
-  font-size: 0.8rem;
+  font-size: 12px; /* 0.8rem ≈ 12px */
   color: var(--text-color);
 }
 
 /* Error Styling */
 .error {
   color: var(--error-color);
-  font-size: 0.9rem;
-  margin-top: 0.3rem;
+  font-size: 14px; /* 0.9rem ≈ 14px */
+  margin-top: 5px; /* 0.3rem ≈ 5px */
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -208,11 +214,11 @@ input[type='range'] {
 .form-navigation {
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
+  gap: 16px; /* 1rem = 16px */
 }
 
 .form-navigation button {
-  padding: 0.6rem 1.2rem;
+  padding: 10px 20px; /* 0.6rem = 10px, 1.2rem = 20px */
   background-color: var(--button-bg);
   color: #ffffff;
   border: none;
@@ -220,7 +226,7 @@ input[type='range'] {
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 1rem;
+  font-size: 16px; /* Fixed font size */
 }
 
 .form-navigation button:hover:not(:disabled) {
@@ -235,29 +241,31 @@ input[type='range'] {
 /* Confirmation Message */
 .confirmation {
   background-color: var(--secondary-color);
-  padding: 2rem;
+  padding: 32px; /* 2rem = 32px */
   border: 1px solid var(--border-color);
   border-radius: 6px;
   box-shadow: 0 2px 4px var(--shadow-color);
   text-align: center;
-  max-width: 600px;
-  margin-top: 2rem;
+  width: 600px; /* Fixed width */
+  margin: 32px auto 0 auto; /* 2rem = 32px top margin, centered */
 }
 
 .confirmation h2 {
-  margin-bottom: 1rem;
+  margin-bottom: 16px; /* 1rem = 16px */
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: var(--text-color);
+  font-size: 24px; /* Fixed font size */
 }
 
 .confirmation p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 24px; /* 1.5rem = 24px */
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: var(--text-color);
+  font-size: 16px; /* Fixed font size */
 }
 
 .confirmation button {
-  padding: 0.6rem 1.2rem;
+  padding: 10px 20px; /* 0.6rem = 10px, 1.2rem = 20px */
   background-color: var(--button-bg);
   color: #ffffff;
   border: none;
@@ -265,7 +273,7 @@ input[type='range'] {
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 1rem;
+  font-size: 16px; /* Fixed font size */
 }
 
 .confirmation button:hover {
@@ -276,13 +284,14 @@ input[type='range'] {
 .image-preview {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  gap: 8px; /* 0.5rem = 8px */
+  margin-top: 16px; /* 1rem = 16px */
+  justify-content: flex-start; /* Align items to the start */
 }
 
 .preview-image {
-  width: 100px;
-  height: 100px;
+  width: 100px;  /* Fixed width */
+  height: 100px; /* Fixed height */
   object-fit: cover;
   border: 1px solid var(--border-color);
   border-radius: 4px;
@@ -315,56 +324,9 @@ input[type='range'] {
   background: rgba(0, 0, 0, 0.8);
 }
 
-/* Responsive Design */
-@media (min-width: 769px) {
-  .onboarding-content {
-    flex-direction: row;
-  }
-}
+/* Remove Responsive Design */
+/* All media queries have been removed to maintain absolute sizes */
 
-@media (max-width: 768px) {
-  .onboarding-content {
-    flex-direction: column;
-  }
-
-  .steps-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  }
-
-  .step-form {
-    max-width: 100%;
-  }
-
-  .form-navigation {
-    justify-content: center;
-  }
-
-  .image-preview {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .preview-image {
-    width: 60px;
-    height: 60px;
-  }
-
-  .onboarding-wrapper {
-    padding: 1rem;
-  }
-
-  .step-form,
-  .confirmation {
-    padding: 1rem;
-  }
-
-  .form-navigation {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .form-navigation button {
-    width: 100%;
-  }
-}
+/* If you need to maintain some layout adjustments without changing sizes, 
+   you can keep flex directions fixed. However, based on your request, 
+   all responsive behaviors have been removed. */

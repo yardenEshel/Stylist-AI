@@ -15,7 +15,7 @@ const Footer = () => {
         <a href="/contact" style={styles.link}>Contact</a>
       </p>
       <br></br>
-      <p style={styles.text}>StylistAI © 2025</p>
+      <p style={styles.text}>ViStyle © 2025</p>
     </footer>
   );
 };

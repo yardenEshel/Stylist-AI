@@ -18,6 +18,8 @@ body {
   animation: fadeIn 1s ease-in-out;
   background-image: url('home-background.avif');
   background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* Fills one full screen height, pushing the next section below the fold */
@@ -109,3 +111,5 @@ body {
     opacity: 1;
   }
 }
+
+
