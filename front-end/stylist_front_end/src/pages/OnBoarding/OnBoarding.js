@@ -84,10 +84,15 @@ const OnBoarding = () => {
   // State to store form data
   const [formData, setFormData] = useState({
     eventType: '',
-    eventTypeOther: '', // Added to handle 'Other' specification
-    priceRange: [100, 1000], // Initialize with default min and max values
-    venueSize: '',
-    attendees: '',
+    eventTypeOther: '',
+    priceRange: [100, 1000],
+    // Outfit sizes
+    shirtSize: '',
+    pantsSize: '',
+    inseamLength: '',
+    shoeSize: '',
+    hatSize: '',
+    // Preferences
     values: [],
     brandType: [],
     images: [],
@@ -139,6 +144,7 @@ const OnBoarding = () => {
   // Validate each step
   const validateStep = () => {
     let stepErrors = {};
+
     switch (currentStep) {
       case 1:
         if (!formData.eventType) {
@@ -148,44 +154,35 @@ const OnBoarding = () => {
           stepErrors.eventTypeOther = 'Please specify the event type.';
         }
         break;
-      case 2:
-        const [minPrice, maxPrice] = formData.priceRange;
 
+      case 2: {
+        const [minPrice, maxPrice] = formData.priceRange;
         if (minPrice === undefined || minPrice === null) {
           stepErrors.priceRange = 'Please select a minimum price.';
         }
-
         if (maxPrice === undefined || maxPrice === null) {
           stepErrors.priceRange = 'Please select a maximum price.';
         }
-
         if (minPrice > maxPrice) {
           stepErrors.priceRange = 'Minimum price cannot be greater than maximum price.';
         }
         break;
+      }
+
       case 3:
-        if (!formData.venueSize) {
-          stepErrors.venueSize = 'Please enter the venue size.';
+        // Validate outfit sizes (example: require at least these three)
+        if (!formData.shirtSize) {
+          stepErrors.shirtSize = 'Please select your shirt size.';
         }
-        if (!formData.attendees) {
-          stepErrors.attendees = 'Please enter the number of attendees.';
+        if (!formData.pantsSize) {
+          stepErrors.pantsSize = 'Please enter your pants waist size.';
         }
-        if (
-          (formData.venueSize && Number(formData.venueSize) <= 0) ||
-          (formData.attendees && Number(formData.attendees) <= 0)
-        ) {
-          stepErrors.venueSize = 'Please enter positive numbers.';
-          stepErrors.attendees = 'Please enter positive numbers.';
+        if (!formData.shoeSize) {
+          stepErrors.shoeSize = 'Please enter your shoe size.';
         }
+        // If you'd like to require inseam or hat size, add checks similarly
         break;
-      case 5:
-        if (formData.values.length === 0) {
-          stepErrors.values = 'Please select at least one value.';
-        }
-        if (formData.brandType.length === 0) {
-          stepErrors.brandType = 'Please select at least one brand type.';
-        }
-        break;
+
       case 4:
         if (formData.images.length === 0) {
           stepErrors.images = 'Please upload at least one image.';
@@ -194,6 +191,16 @@ const OnBoarding = () => {
           stepErrors.images = 'You can upload a maximum of 25 images.';
         }
         break;
+
+      case 5:
+        if (formData.values.length === 0) {
+          stepErrors.values = 'Please select at least one value.';
+        }
+        if (formData.brandType.length === 0) {
+          stepErrors.brandType = 'Please select at least one brand type.';
+        }
+        break;
+
       default:
         break;
     }
@@ -240,10 +247,13 @@ const OnBoarding = () => {
     setCompletedSteps([]);
     setFormData({
       eventType: '',
-      eventTypeOther: '', // Reset 'Other' field
-      priceRange: [100, 1000], // Reset to default price range
-      venueSize: '',
-      attendees: '',
+      eventTypeOther: '',
+      priceRange: [100, 1000],
+      shirtSize: '',
+      pantsSize: '',
+      inseamLength: '',
+      shoeSize: '',
+      hatSize: '',
       values: [],
       brandType: [],
       images: [],
@@ -259,7 +269,9 @@ const OnBoarding = () => {
     };
   }, [formData.images]);
 
+  // ----------------------------------
   // Internal Sub-Components
+  // ----------------------------------
 
   // StepBox Component
   const StepBox = ({ step, isCompleted, isActive, onClick }) => {
@@ -395,50 +407,121 @@ const OnBoarding = () => {
     errors: PropTypes.object.isRequired,
   };
 
-  // VenueDetailsForm Component
-  const VenueDetailsForm = ({ formData, handleChange, errors }) => {
+  // ---------------------------
+  // OutfitDetailsForm Component
+  // ---------------------------
+  const OutfitDetailsForm = ({ formData, handleChange, errors }) => {
     return (
       <div className="form-group">
-        {/* Venue Size Field */}
+        {/* Shirt Size Field */}
         <div className="input-group">
-          <label htmlFor="venueSize">Venue Size (sq ft):</label>
-          <input
-            type="number"
-            id="venueSize"
-            name="venueSize"
-            value={formData.venueSize}
+          <label htmlFor="shirtSize">Shirt Size:</label>
+          <select
+            id="shirtSize"
+            name="shirtSize"
+            value={formData.shirtSize}
             onChange={handleChange}
-            placeholder="e.g., 500"
-            min="0"
-            step="10"
-            aria-describedby="venueSizeError"
             required
-          />
-          {errors.venueSize && (
-            <span id="venueSizeError" className="error" role="alert">
-              {errors.venueSize}
+            aria-describedby="shirtSizeError"
+          >
+            <option value="">-- Select --</option>
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+            {/* Add more as needed */}
+          </select>
+          {errors.shirtSize && (
+            <span id="shirtSizeError" className="error" role="alert">
+              {errors.shirtSize}
             </span>
           )}
         </div>
 
-        {/* Number of Attendees Field */}
+        {/* Pants (Waist) Size Field */}
         <div className="input-group">
-          <label htmlFor="attendees">Number of Attendees:</label>
+          <label htmlFor="pantsSize">Pants Waist Size (in inches):</label>
           <input
             type="number"
-            id="attendees"
-            name="attendees"
-            value={formData.attendees}
+            id="pantsSize"
+            name="pantsSize"
+            value={formData.pantsSize}
             onChange={handleChange}
-            placeholder="e.g., 50"
-            min="1"
+            placeholder="e.g., 32"
+            min="20"
+            max="60"
             step="1"
-            aria-describedby="attendeesError"
             required
+            aria-describedby="pantsSizeError"
           />
-          {errors.attendees && (
-            <span id="attendeesError" className="error" role="alert">
-              {errors.attendees}
+          {errors.pantsSize && (
+            <span id="pantsSizeError" className="error" role="alert">
+              {errors.pantsSize}
+            </span>
+          )}
+        </div>
+
+        {/* Inseam Length Field (Optional) */}
+        <div className="input-group">
+          <label htmlFor="inseamLength">Inseam Length (in inches):</label>
+          <input
+            type="number"
+            id="inseamLength"
+            name="inseamLength"
+            value={formData.inseamLength}
+            onChange={handleChange}
+            placeholder="e.g., 30"
+            min="20"
+            max="40"
+            step="1"
+            aria-describedby="inseamLengthError"
+          />
+          {errors.inseamLength && (
+            <span id="inseamLengthError" className="error" role="alert">
+              {errors.inseamLength}
+            </span>
+          )}
+        </div>
+
+        {/* Shoe Size Field */}
+        <div className="input-group">
+          <label htmlFor="shoeSize">Shoe Size (US):</label>
+          <input
+            type="number"
+            id="shoeSize"
+            name="shoeSize"
+            value={formData.shoeSize}
+            onChange={handleChange}
+            placeholder="e.g., 10"
+            min="0"
+            step="0.5"
+            required
+            aria-describedby="shoeSizeError"
+          />
+          {errors.shoeSize && (
+            <span id="shoeSizeError" className="error" role="alert">
+              {errors.shoeSize}
+            </span>
+          )}
+        </div>
+
+        {/* Hat Size Field (Optional) */}
+        <div className="input-group">
+          <label htmlFor="hatSize">Hat Size:</label>
+          <input
+            type="text"
+            id="hatSize"
+            name="hatSize"
+            value={formData.hatSize}
+            onChange={handleChange}
+            placeholder="e.g., 7 1/4"
+            aria-describedby="hatSizeError"
+          />
+          {errors.hatSize && (
+            <span id="hatSizeError" className="error" role="alert">
+              {errors.hatSize}
             </span>
           )}
         </div>
@@ -446,10 +529,13 @@ const OnBoarding = () => {
     );
   };
 
-  VenueDetailsForm.propTypes = {
+  OutfitDetailsForm.propTypes = {
     formData: PropTypes.shape({
-      venueSize: PropTypes.string.isRequired,
-      attendees: PropTypes.string.isRequired,
+      shirtSize: PropTypes.string.isRequired,
+      pantsSize: PropTypes.string.isRequired,
+      inseamLength: PropTypes.string,
+      shoeSize: PropTypes.string.isRequired,
+      hatSize: PropTypes.string,
     }).isRequired,
     handleChange: PropTypes.func.isRequired,
     errors: PropTypes.object.isRequired,
@@ -547,19 +633,25 @@ const OnBoarding = () => {
           </FormControl>
         </div>
       </div>
-    )};
+    );
+  };
 
-    PreferencesForm.propTypes = {
-      formData: PropTypes.shape({
-        values: PropTypes.arrayOf(PropTypes.string).isRequired,
-        brandType: PropTypes.arrayOf(PropTypes.string).isRequired,
-      }).isRequired,
-      setFormData: PropTypes.func.isRequired,
-      errors: PropTypes.object.isRequired,
-    };
+  PreferencesForm.propTypes = {
+    formData: PropTypes.shape({
+      values: PropTypes.arrayOf(PropTypes.string).isRequired,
+      brandType: PropTypes.arrayOf(PropTypes.string).isRequired,
+    }).isRequired,
+    setFormData: PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired,
+  };
 
   // UploadImagesForm Component
   const UploadImagesForm = ({ formData, handleChange, errors }) => {
+    const setFormDataWrapper = (newValue) => {
+      // Helper to remove images from formData
+      setFormData((prev) => ({ ...prev, images: newValue }));
+    };
+
     return (
       <div className="form-group">
         <div className="input-group">
@@ -595,7 +687,7 @@ const OnBoarding = () => {
                   onClick={() => {
                     // Remove the image from formData
                     const updatedImages = formData.images.filter((_, i) => i !== index);
-                    setFormData((prev) => ({ ...prev, images: updatedImages }));
+                    setFormDataWrapper(updatedImages);
                   }}
                   aria-label={`Remove image ${index + 1}`}
                 >
@@ -634,11 +726,7 @@ const OnBoarding = () => {
         >
           Back
         </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleNext}
-        >
+        <Button variant="contained" color="primary" onClick={handleNext}>
           {isLastStep ? 'Finish' : 'Next'}
         </Button>
       </div>
@@ -669,7 +757,9 @@ const OnBoarding = () => {
     resetOnboarding: PropTypes.func.isRequired,
   };
 
+  // ----------------------------------
   // Main Render
+  // ----------------------------------
   return (
     <div className="onboarding-wrapper">
       <div className="onboarding-content">
@@ -685,76 +775,68 @@ const OnBoarding = () => {
             />
           ))}
         </div>
-        
       </div>
-{/* Current Step Form */}
-        {currentStep && (
-          <div className="step-form">
-            <h2>
-              Step {currentStep}: {steps.find((step) => step.id === currentStep).title}
-            </h2>
-            <form>
-              {currentStep === 0 && (
-                <EventTypeForm
-                  formData={formData}
-                  handleChange={handleChange}
-                  handleRadioChange={handleRadioChange}
-                  isOther={isOther}
-                  errors={errors}
-                />
-              )}
-              {currentStep === 1 && (
-                <EventTypeForm
-                  formData={formData}
-                  handleChange={handleChange}
-                  handleRadioChange={handleRadioChange}
-                  isOther={isOther}
-                  errors={errors}
-                />
-              )}
 
-              {currentStep === 2 && (
-                <PriceRangeForm
-                  formData={formData}
-                  handleSliderChange={handleSliderChange}
-                  errors={errors}
-                />
-              )}
-
-              {currentStep === 3 && (
-                <VenueDetailsForm
-                  formData={formData}
-                  handleChange={handleChange}
-                  errors={errors}
-                />
-              )}
-
-              {currentStep === 5 && (
-                <PreferencesForm
-                  formData={formData}
-                  setFormData={setFormData}
-                  errors={errors}
-                />
-              )}
-
-              {currentStep === 4 && (
-                <UploadImagesForm
-                  formData={formData}
-                  handleChange={handleChange}
-                  errors={errors}
-                />
-              )}
-
-              {/* Navigation Buttons */}
-              <NavigationButtons
-                handleBack={handleBack}
-                handleNext={handleNext}
-                isFirstStep={currentStep === 1}
-                isLastStep={currentStep === steps.length}
+      {/* Current Step Form */}
+      {currentStep && (
+        <div className="step-form">
+          <h2>
+            Step {currentStep}: {steps.find((step) => step.id === currentStep).title}
+          </h2>
+          <form>
+            {currentStep === 1 && (
+              <EventTypeForm
+                formData={formData}
+                handleChange={handleChange}
+                handleRadioChange={handleRadioChange}
+                isOther={isOther}
+                errors={errors}
               />
-            </form>
+            )}
+
+            {currentStep === 2 && (
+              <PriceRangeForm
+                formData={formData}
+                handleSliderChange={handleSliderChange}
+                errors={errors}
+              />
+            )}
+
+            {currentStep === 3 && (
+              <OutfitDetailsForm
+                formData={formData}
+                handleChange={handleChange}
+                errors={errors}
+              />
+            )}
+
+            {currentStep === 4 && (
+              <UploadImagesForm
+                formData={formData}
+                handleChange={handleChange}
+                errors={errors}
+              />
+            )}
+
+            {currentStep === 5 && (
+              <PreferencesForm
+                formData={formData}
+                setFormData={setFormData}
+                errors={errors}
+              />
+            )}
+
+            {/* Navigation Buttons */}
+            <NavigationButtons
+              handleBack={handleBack}
+              handleNext={handleNext}
+              isFirstStep={currentStep === 1}
+              isLastStep={currentStep === steps.length}
+            />
+          </form>
         </div>
-        )}
+      )}
+
       {/* Confirmation Message */}
       {!currentStep && completedSteps.length === steps.length && (
         <Confirmation resetOnboarding={resetOnboarding} />
@@ -763,7 +845,6 @@ const OnBoarding = () => {
   );
 };
 
-// PropTypes for OnBoarding Component's internal state setters
 OnBoarding.propTypes = {};
 
 export default OnBoarding;
